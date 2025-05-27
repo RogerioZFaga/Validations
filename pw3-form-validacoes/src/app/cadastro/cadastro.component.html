@@ -1,0 +1,35 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Nome:</label>
+    <input formControlName="nome" />
+
+    @if (formulario.get('nome')?.touched && formulario.get('nome')?.invalid) {}
+  </div>
+
+          @if (formulario.get('nome')?.errors?.['required']) {
+            <small>Nome é obrigatorio</small>
+          }
+          @if (formulario.get('nome')?.errors?.['minlength']) {
+            <small>Mínimo de caracteres é 3</small>
+          }
+  <div>
+
+    <label>Email:</label>
+    <input formControlName="email" />
+    
+    @if (formulario.get('email')?.touched && formulario.get('email')?.invalid) {}
+  </div>
+
+          @if (formulario.get('email')?.errors?.['required']) {
+            <small>Email é obrigatorio</small>
+          }
+          @if (formulario.get('email')?.errors?.['email']) {
+            <small>Formato inválido</small>
+          }
+  <div>
+    <label>Idade:</label>
+    <input type="number" formControlName="idade" />
+  </div>
+
+  <button type="submit" [disabled]="formulario.invalid">Enviar</button>
+</form>
